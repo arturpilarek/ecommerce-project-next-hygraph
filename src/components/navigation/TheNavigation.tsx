@@ -167,7 +167,7 @@ export default function TheNavigation() {
 
                   <div className="hidden h-full lg:flex">
                     {/* Flyout menus */}
-                    <Popover.Group className="inset-x-0 bottom-0 px-4">
+                    <Popover.Group className="inset-x-0 bottom-0 z-30 px-4">
                       <div className="flex justify-center h-full space-x-8">
                         {navigation.categories.map((category) => (
                           <Popover key={category.name} className="flex">
