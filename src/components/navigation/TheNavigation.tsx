@@ -1,29 +1,8 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import {
-    Bars3Icon,
-    MagnifyingGlassIcon,
-    QuestionMarkCircleIcon,
-    ShoppingBagIcon,
-    XMarkIcon,
-} from '@heroicons/react/24/outline'
+
 import { Fragment, useState } from 'react'
+import BottomNavigation from './BottomNavigation'
 import MobileNavigation from './MobileNavigation'
+import TopNavigation from './TopNavigation'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
@@ -94,9 +73,7 @@ const navigation = {
   ],
 }
 
-function classNames(...classes :string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+
 
 export default function TheNavigation() {
   const [open, setOpen] = useState(false)
@@ -111,198 +88,8 @@ export default function TheNavigation() {
         <MobileNavigation navigation={navigation} currencies={currencies} openState={open} changeOpenState={setNavigationOpen} />
       <header className="relative">
         <nav aria-label="Top">
-          {/* Top navigation */}
-          <div className="bg-gray-900">
-            <div className="flex items-center justify-between h-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-              {/* Currency selector */}
-              <form>
-                <div>
-                  <label htmlFor="desktop-currency" className="sr-only">
-                    Currency
-                  </label>
-                  <div className="relative -ml-2 bg-gray-900 border-transparent rounded-md group focus-within:ring-2 focus-within:ring-white">
-                    <select
-                      id="desktop-currency"
-                      name="currency"
-                      className="flex items-center rounded-md border-transparent bg-gray-900 bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-white focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-100"
-                    >
-                      {currencies.map((currency) => (
-                        <option key={currency}>{currency}</option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none">
-                      <ChevronDownIcon className="w-5 h-5 text-gray-300" aria-hidden="true" />
-                    </div>
-                  </div>
-                </div>
-              </form>
-
-              <div className="flex items-center space-x-6">
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
-                  Sign in
-                </a>
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
-                  Create an account
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Secondary navigation */}
-          <div className="bg-white">
-            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-              <div className="border-b border-gray-200">
-                <div className="flex items-center justify-between h-16">
-                  {/* Logo (lg+) */}
-                  <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                    <a href="#">
-                      <span className="sr-only">Your Company</span>
-                      <img
-                        className="w-auto h-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-
-                  <div className="hidden h-full lg:flex">
-                    {/* Flyout menus */}
-                    <Popover.Group className="inset-x-0 bottom-0 z-30 px-4">
-                      <div className="flex justify-center h-full space-x-8">
-                        {navigation.categories.map((category) => (
-                          <Popover key={category.name} className="flex">
-                            {({ open }) => (
-                              <>
-                                <div className="relative flex">
-                                  <Popover.Button
-                                    className={classNames(
-                                      open
-                                        ? 'border-indigo-600 text-indigo-600'
-                                        : 'border-transparent text-gray-700 hover:text-gray-800',
-                                      'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
-                                    )}
-                                  >
-                                    {category.name}
-                                  </Popover.Button>
-                                </div>
-
-                                <Transition
-                                  as={Fragment}
-                                  enter="transition ease-out duration-200"
-                                  enterFrom="opacity-0"
-                                  enterTo="opacity-100"
-                                  leave="transition ease-in duration-150"
-                                  leaveFrom="opacity-100"
-                                  leaveTo="opacity-0"
-                                >
-                                  <Popover.Panel className="absolute inset-x-0 text-sm text-gray-500 top-full">
-                                    {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                                    <div className="absolute inset-0 bg-white shadow top-1/2" aria-hidden="true" />
-
-                                    <div className="relative bg-white">
-                                      <div className="px-8 mx-auto max-w-7xl">
-                                        <div className="grid grid-cols-4 py-16 gap-x-8 gap-y-10">
-                                          {category.featured.map((item) => (
-                                            <div key={item.name} className="relative group">
-                                              <div className="overflow-hidden bg-gray-100 rounded-md aspect-h-1 aspect-w-1 group-hover:opacity-75">
-                                                <img
-                                                  src={item.imageSrc}
-                                                  alt={item.imageAlt}
-                                                  className="object-cover object-center"
-                                                />
-                                              </div>
-                                              <a href={item.href} className="block mt-4 font-medium text-gray-900">
-                                                <span className="absolute inset-0 z-10" aria-hidden="true" />
-                                                {item.name}
-                                              </a>
-                                              <p aria-hidden="true" className="mt-1">
-                                                Shop now
-                                              </p>
-                                            </div>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </Popover.Panel>
-                                </Transition>
-                              </>
-                            )}
-                          </Popover>
-                        ))}
-
-                        {navigation.pages.map((page) => (
-                          <a
-                            key={page.name}
-                            href={page.href}
-                            className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                          >
-                            {page.name}
-                          </a>
-                        ))}
-                      </div>
-                    </Popover.Group>
-                  </div>
-
-                  {/* Mobile menu and search (lg-) */}
-                  <div className="flex items-center flex-1 lg:hidden">
-                    <button
-                      type="button"
-                      className="p-2 -ml-2 text-gray-400 bg-white rounded-md"
-                      onClick={() => setOpen(true)}
-                    >
-                      <span className="sr-only">Open menu</span>
-                      <Bars3Icon className="w-6 h-6" aria-hidden="true" />
-                    </button>
-
-                    {/* Search */}
-                    <a href="#" className="p-2 ml-2 text-gray-400 hover:text-gray-500">
-                      <span className="sr-only">Search</span>
-                      <MagnifyingGlassIcon className="w-6 h-6" aria-hidden="true" />
-                    </a>
-                  </div>
-
-                  {/* Logo (lg-) */}
-                  <a href="#" className="lg:hidden">
-                    <span className="sr-only">Your Company</span>
-                    <img
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                      alt=""
-                      className="w-auto h-8"
-                    />
-                  </a>
-
-                  <div className="flex items-center justify-end flex-1">
-                    <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
-                      Search
-                    </a>
-
-                    <div className="flex items-center lg:ml-8">
-                      {/* Help */}
-                      <a href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
-                        <span className="sr-only">Help</span>
-                        <QuestionMarkCircleIcon className="w-6 h-6" aria-hidden="true" />
-                      </a>
-                      <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
-                        Help
-                      </a>
-
-                      {/* Cart */}
-                      <div className="flow-root ml-4 lg:ml-8">
-                        <a href="#" className="flex items-center p-2 -m-2 group">
-                          <ShoppingBagIcon
-                            className="flex-shrink-0 w-6 h-6 text-gray-400 group-hover:text-gray-500"
-                            aria-hidden="true"
-                          />
-                          <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
-                          <span className="sr-only">items in cart, view bag</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <TopNavigation currencies={currencies} />
+        <BottomNavigation navigation={navigation} openState={open} changeOpenState={setNavigationOpen} />
         </nav>
       </header>
     </div>
