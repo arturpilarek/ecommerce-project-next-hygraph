@@ -7,7 +7,7 @@ import {
 import FlytoutMenus from './FlytoutMenus'
 
 type BottomNavigationProps = {
-navigation: any,
+categories: any,
 openState: boolean,
 changeOpenState: any
 }
@@ -34,7 +34,7 @@ export default function BottomNavigation(props : BottomNavigationProps) {
               />
             </a>
           </div>
-            <FlytoutMenus navigation={props.navigation} />
+            <FlytoutMenus categories={props.categories} />
 
           {/* Mobile menu and search (lg-) */}
           <div className="flex items-center flex-1 lg:hidden">

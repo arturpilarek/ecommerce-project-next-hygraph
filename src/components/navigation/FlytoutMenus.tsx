@@ -8,16 +8,16 @@ function classNames(...classes :string[]) {
   }
 
   type FlytoutMenusProps = {
-    navigation: any
+    categories: any
     }
 
-export default function FlytoutMenus({ navigation } : FlytoutMenusProps) {
+export default function FlytoutMenus({ categories } : FlytoutMenusProps) {
   return (
     <div className="hidden h-full lg:flex">
     {/* Flyout menus */}
     <Popover.Group className="inset-x-0 bottom-0 z-30 px-4">
       <div className="flex justify-center h-full space-x-8">
-        {navigation.categories.map((category : any) => (
+        {categories && categories.map((category : any) => (
           <Popover key={category.name} className="flex">
             {({ open }) => (
               <>
@@ -50,9 +50,11 @@ export default function FlytoutMenus({ navigation } : FlytoutMenusProps) {
                     <div className="relative bg-white">
                       <div className="px-8 mx-auto max-w-7xl">
                         <div className="grid grid-cols-4 py-16 gap-x-8 gap-y-10">
-                          {category.featured.map((item : any) => (
-                                <SimpleProductCard key={item.name} item={item}  />
-                          ))}
+                          {category.products && category.products.map(item => (
+                            item.featured &&
+                            <SimpleProductCard key={item.name} item={item}  />
+                          )
+                          )}
                         </div>
                       </div>
                     </div>
@@ -63,15 +65,19 @@ export default function FlytoutMenus({ navigation } : FlytoutMenusProps) {
           </Popover>
         ))}
         {/* Links from pages */}
-        {navigation.pages.map((page : any) => (
+        {/* {categories && categories.map((page : any) => (        ))} */}
           <a
-            key={page.name}
-            href={page.href}
+            href={"About"}
             className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
           >
-            {page.name}
+            About
           </a>
-        ))}
+          <a
+            href={"Stores"}
+            className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+          >
+            Our Stores
+          </a>
       </div>
     </Popover.Group>
   </div>

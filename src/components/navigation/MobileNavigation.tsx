@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Fragment, useState } from 'react'
 
 type MobileNavigationProps = {
-    navigation: any,
+    categories: any,
     currencies: any,
     openState: boolean,
     changeOpenState: any
@@ -62,7 +62,7 @@ export default function MobileNavigation(props : MobileNavigationProps) {
                 <Tab.Group as="div" className="mt-2">
                   <div className="border-b border-gray-200">
                     <Tab.List className="flex px-4 -mb-px space-x-8">
-                      {props.navigation.categories.map((category : any) => (
+                      {props.categories && props.categories.map((category : any) => (
                         <Tab
                           key={category.name}
                           className={({ selected }) =>
@@ -78,38 +78,36 @@ export default function MobileNavigation(props : MobileNavigationProps) {
                     </Tab.List>
                   </div>
                   <Tab.Panels as={Fragment}>
-                    {props.navigation.categories.map((category : any) => (
+                    {props.categories && props.categories.map((category : any) => (
                       <Tab.Panel key={category.name} className="px-4 py-6 space-y-12">
                         <div className="grid grid-cols-2 gap-x-4 gap-y-10">
-                          {category.featured.map((item : any) => (
-                            <div key={item.name} className="relative group">
+                            <div key={category.name} className="relative group">
                               <div className="overflow-hidden bg-gray-100 rounded-md aspect-h-1 aspect-w-1 group-hover:opacity-75">
-                                <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
+                                <img src={category.categoryThumbnail.url} alt={category.name} className="object-cover object-center" />
                               </div>
-                              <a href={item.href} className="block mt-6 text-sm font-medium text-gray-900">
+                              <a href={category.slug} className="block mt-6 text-sm font-medium text-gray-900">
                                 <span className="absolute inset-0 z-10" aria-hidden="true" />
-                                {item.name}
+                                {category.name}
                               </a>
                               <p aria-hidden="true" className="mt-1 text-sm text-gray-500">
                                 Shop now
                               </p>
                             </div>
-                          ))}
                         </div>
                       </Tab.Panel>
                     ))}
                   </Tab.Panels>
                 </Tab.Group>
 
-                <div className="px-4 py-6 space-y-6 border-t border-gray-200">
-                  {props.navigation.pages.map((page : any) => (
+                {/* <div className="px-4 py-6 space-y-6 border-t border-gray-200"> */}
+                  {/* {props.navigation.pages.map((page : any) => (
                     <div key={page.name} className="flow-root">
                       <a href={page.href} className="block p-2 -m-2 font-medium text-gray-900">
                         {page.name}
                       </a>
                     </div>
-                  ))}
-                </div>
+                  ))} */}
+                {/* </div> */}
 
                 <div className="px-4 py-6 space-y-6 border-t border-gray-200">
                   <div className="flow-root">
