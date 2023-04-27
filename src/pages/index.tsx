@@ -1,15 +1,12 @@
 import PromoSection from "@/components/PromoSection";
-import { gql, useQuery } from '@apollo/client';
-import { getClient } from '../../lib/apolloClient';
+import Link from "next/link";
 
 export default function Home() {
-
-
 
   return (
     <section>
       <h1>Hello world</h1>
-      {/* <PromoSection /> */}
+      <PromoSection />
     </section>
   )
 }

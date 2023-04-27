@@ -50,11 +50,11 @@ export default function TheNavigation() {
 
     useEffect(() => {
       const fetchCategories = async () => {
-        const categories: categories = await request(
+        const categoriesData: categories = await request(
           `${process.env.hygraph_url}`,
           GET_CATEGORIES
         )
-        setCategories(categories.categories)
+        setCategories(categoriesData.categories)
       }
       fetchCategories()
       

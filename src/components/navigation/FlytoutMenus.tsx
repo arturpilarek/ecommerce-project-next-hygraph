@@ -1,4 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
+import Link from 'next/link'
 import { Fragment } from 'react'
 import SimpleProductCard from '../productCards/SimpleProductCard'
 
@@ -50,7 +51,7 @@ export default function FlytoutMenus({ categories } : FlytoutMenusProps) {
                     <div className="relative bg-white">
                       <div className="px-8 mx-auto max-w-7xl">
                         <div className="grid grid-cols-4 py-16 gap-x-8 gap-y-10">
-                          {category.products && category.products.map(item => (
+                          {category.products && category.products.map((item: any) => (
                             item.featured &&
                             <SimpleProductCard key={item.name} item={item}  />
                           )
@@ -66,12 +67,18 @@ export default function FlytoutMenus({ categories } : FlytoutMenusProps) {
         ))}
         {/* Links from pages */}
         {/* {categories && categories.map((page : any) => (        ))} */}
-          <a
-            href={"About"}
+          <Link
+            href={"/categories/mugs"}
             className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
           >
-            About
-          </a>
+            Category - mugs
+          </Link>
+          <Link
+            href={"/products/cat-i-are-programmer"}
+            className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+          >
+            Product - cat
+          </Link>
           <a
             href={"Stores"}
             className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
