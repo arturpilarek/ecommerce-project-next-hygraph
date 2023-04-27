@@ -3,13 +3,13 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getClient } from '../../../lib/apolloClient';
 
-export default function ProductPage({ product} : any) {
+import ProductOverview from '@/components/productCards/ProductOverview';
 
-    console.log(product)
+export default function ProductPage({ product} : any) {
 
   return (
     <div>
-        <h2>Product name : {product && product.name}</h2>
+        <ProductOverview product={product}/>
     </div>
   )
 }
@@ -61,11 +61,14 @@ export const getStaticPaths : GetStaticPaths = async () => {
                     }
                     price
                     featured
+                    stock
+                    slug
                     images {
                         url
                     }
                     categories {
                         name
+                        slug
                     }
                 }
             }
@@ -74,8 +77,6 @@ export const getStaticPaths : GetStaticPaths = async () => {
             slug
         }
     })
-
-    console.log(productBySlug)
 
     return {
         props: {

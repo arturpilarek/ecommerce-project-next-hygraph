@@ -2,6 +2,7 @@ import { Popover, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import SimpleProductCard from '../productCards/SimpleProductCard'
+import { Category } from '../../../types/Category'
 
 
 function classNames(...classes :string[]) {
@@ -9,7 +10,7 @@ function classNames(...classes :string[]) {
   }
 
   type FlytoutMenusProps = {
-    categories: any
+    categories: Category[]
     }
 
 export default function FlytoutMenus({ categories } : FlytoutMenusProps) {

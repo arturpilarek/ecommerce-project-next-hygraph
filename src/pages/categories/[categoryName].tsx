@@ -2,14 +2,17 @@ import { gql } from '@apollo/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getClient } from '../../../lib/apolloClient';
+import { Category } from '../../../types/Category';
 
-export default function CategoryPage({ category} : any) {
+type CategoryPageProps = {
+    category: Category
+}
 
-    console.log(category)
+export default function CategoryPage({ category } : CategoryPageProps) {
 
   return (
     <div>
-        <h2>Categories</h2>
+        <h2>Category name : {category && category.name}</h2>
     </div>
   )
 }
@@ -81,8 +84,6 @@ export const getStaticPaths : GetStaticPaths = async () => {
             slug
         }
     })
-
-    console.log(categoryBySlug)
 
     return {
         props: {

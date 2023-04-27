@@ -1,12 +1,17 @@
 import PromoSection from "@/components/PromoSection";
-import Link from "next/link";
+import Head from "next/head";
 
 export default function Home() {
 
   return (
+    <>
+    <Head>
+      <title>Meme-commerce</title>
+      <meta name="description" content="Home page" />
+    </Head>
     <section>
-      <h1>Hello world</h1>
       <PromoSection />
     </section>
+    </>
   )
 }
