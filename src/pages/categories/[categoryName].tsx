@@ -10,9 +10,14 @@ type CategoryPageProps = {
 
 export default function CategoryPage({ category } : CategoryPageProps) {
 
+    console.log(category)
+
   return (
-    <div>
-        <h2>Category name : {category && category.name}</h2>
+    <div className="bg-white">
+      <div className="px-4 py-16 text-center sm:px-6 lg:px-8">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900">{category.name}</h1>
+        <div className="max-w-xl mx-auto mt-4 text-base text-gray-500" dangerouslySetInnerHTML={{ __html: category.description.html }}/>
+      </div>
     </div>
   )
 }
@@ -61,6 +66,9 @@ export const getStaticPaths : GetStaticPaths = async () => {
                     name
                     categoryThumbnail {
                     url
+                    }
+                    description {
+                    html
                     }
                     products {
                     ... on Product {

@@ -3,7 +3,11 @@ type breadcrumb = {
     href: string
     }
 
-export default function Breadcrumbs({breadcrumbsArray} : {breadcrumbsArray: breadcrumb[]}) {
+type BreadcrumbsProps = {
+    breadcrumbsArray: breadcrumb[]
+}
+
+export default function Breadcrumbs({breadcrumbsArray} : BreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb">
     <ol role="list" className="flex items-center space-x-2">
