@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import { getClient } from '../../../lib/apolloClient';
 
@@ -9,6 +10,16 @@ export default function ProductPage({ product} : any) {
 
   return (
     <div>
+    <Head>
+        <title>
+        {`Meme-commerce - ${product.name}`}
+        </title>
+        <meta
+        name="description"
+        content={product.shortDescription}
+        key="desc"
+        />
+    </Head>
         <ProductOverview product={product}/>
     </div>
   )
@@ -59,6 +70,7 @@ export const getStaticPaths : GetStaticPaths = async () => {
                     description {
                         html
                     }
+                    shortDescription
                     price
                     featured
                     stock

@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import { getClient } from '../../../lib/apolloClient';
 import { Category } from '../../../types/Category';
@@ -10,10 +11,19 @@ type CategoryPageProps = {
 
 export default function CategoryPage({ category } : CategoryPageProps) {
 
-    console.log(category)
 
   return (
     <div className="bg-white">
+    <Head>
+    <title>
+    {`Meme-commerce - ${category.name}`}
+    </title>
+    <meta
+      name="description"
+      content={category.shortDescription}
+      key="desc"
+    />
+  </Head>
       <div className="px-4 py-16 text-center sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900">{category.name}</h1>
         <div className="max-w-xl mx-auto mt-4 text-base text-gray-500" dangerouslySetInnerHTML={{ __html: category.description.html }}/>
@@ -45,7 +55,7 @@ export const getStaticPaths : GetStaticPaths = async () => {
 
     return {
       paths: paths,
-      fallback: 'blocking'
+      fallback: false
     };
   }
 
@@ -70,6 +80,7 @@ export const getStaticPaths : GetStaticPaths = async () => {
                     description {
                     html
                     }
+                    shortDescription
                     products {
                     ... on Product {
                         id

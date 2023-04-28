@@ -9,5 +9,6 @@ export type Category = {
     description: {
         html: string
     }
+    shortDescription: string
     products: [Product]
 }
