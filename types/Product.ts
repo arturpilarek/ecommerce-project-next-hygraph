@@ -4,6 +4,7 @@ export type Product = {
     description: {
         html: string
     }
+    shortDescription: string
     price: number
     featured: boolean
     stock: number

@@ -4,6 +4,9 @@ const nextConfig = {
   env: {
     hygraph_url: process.env.HYGRAPH_API_URL,
   },
+  images: {
+    domains: ['media.graphassets.com']
+  }
 }
 
 module.exports = nextConfig

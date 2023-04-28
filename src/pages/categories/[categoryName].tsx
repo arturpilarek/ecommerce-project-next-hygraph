@@ -92,6 +92,7 @@ export const getStaticPaths : GetStaticPaths = async () => {
                         description {
                         html
                         }
+                        shortDescription
                         images {
                         url
                         }
