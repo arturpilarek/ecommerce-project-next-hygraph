@@ -1,12 +1,20 @@
 import { ReactNode, createContext, useState } from "react";
+import { Currency } from "../types/Currency";
 
 type currencyDefaultValues = {
-    currency: string,
-    setCurrency: (currency: string) => void
+    currency: Currency,
+    setCurrency: (currency: Currency) => void
+}
+
+const defaults: Currency = {
+    code: "USD",
+    symbol: "$",
+    rate: 1,
+    default: true   
 }
 
 export const Currency_Data = createContext<currencyDefaultValues>({
-    currency: "USD",
+    currency: defaults,
     setCurrency: () => {}
 })
 
@@ -15,7 +23,7 @@ type childrenProps = {
 }
 
 export const CurrencyContext = ({ children } : childrenProps) => {
-    const [currency, setCurrency] = useState<string>("USD");
+    const [currency, setCurrency] = useState<Currency>(defaults);
 
     const values : currencyDefaultValues = {
         currency,

@@ -25,7 +25,7 @@ export default function Home() {
       <meta name="description" content="Home page" />
     </Head>
     <section>
-      <p>{currency}</p>
+      <p>{currency.code}</p>
       <PromoSection />
     </section>
     </>

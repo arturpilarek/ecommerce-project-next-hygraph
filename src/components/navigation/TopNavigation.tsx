@@ -2,9 +2,10 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useContext, useRef } from 'react'
 import { Currency_Data } from '../../../context/CurrencyContext'
 import { sortAfterChosenCurrency } from '../../../helper/sorters'
+import { Currency } from '../../../types/Currency'
 
 type TopNavigationProps = {
-    currencies: string[]
+    currencies: Currency[]
     }
 
 export default function TopNavigation({currencies} : TopNavigationProps) {
@@ -12,11 +13,14 @@ export default function TopNavigation({currencies} : TopNavigationProps) {
   const {currency: chosenCurrency, setCurrency: setChosenCurrency} = useContext(Currency_Data);
   const currencySelectorRef = useRef<HTMLSelectElement>(null);
 
-  const sortedCurrencies = sortAfterChosenCurrency(currencies, chosenCurrency);
+  const currencyCodes = currencies.map((currency : Currency) => currency.code);
+
+  const sortedCurrencies = sortAfterChosenCurrency(currencyCodes, chosenCurrency.code);
   
   const setChosenCurrencyHandler = (event : any) => {
     event.preventDefault();
-    setChosenCurrency(currencySelectorRef.current!.value);
+    const getCurrencyObjectBasedOnSelect : Currency = currencies.find((currency : Currency) => currency.code === currencySelectorRef.current?.value)!
+    setChosenCurrency(getCurrencyObjectBasedOnSelect);
   }
   
   return (

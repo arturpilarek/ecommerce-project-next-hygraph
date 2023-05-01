@@ -32,6 +32,7 @@ const GET_CATEGORIES_AND_CURRENCIES = `
     code
     rate
     default
+    symbol
   }
 }
       `
@@ -45,7 +46,7 @@ export default function TheNavigation() {
   
   const [open, setOpen] = useState(false)
   const [categories, setCategories] = useState<Category[] | null>(null)
-  const [currencies, setCurrencies] = useState<string[]>([""])
+  const [currencies, setCurrencies] = useState<Currency[]>([])
 
     useEffect(() => {
       const fetchGraphData = async () => {
@@ -54,7 +55,7 @@ export default function TheNavigation() {
           GET_CATEGORIES_AND_CURRENCIES
         )
         setCategories(graphData.categories)
-        setCurrencies(graphData.currencies.map((currency) => currency.code))
+        setCurrencies(graphData.currencies)
       }
       fetchGraphData()
     }, [])
