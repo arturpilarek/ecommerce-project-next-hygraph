@@ -8,16 +8,6 @@ import { Currency } from "../../types/Currency";
 export default function Home() {
   const {currency, setCurrency} = useContext(Currency_Data);
 
-
-  // useEffect(() => {
-  //   console.log(currency)
-  //   setCurrency(Currency.DKK);
-  //   console.log(currency)
-  // }, [])
-
-
-
-
   return (
     <>
     <Head>

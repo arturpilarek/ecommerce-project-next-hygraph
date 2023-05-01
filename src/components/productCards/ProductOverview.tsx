@@ -1,6 +1,8 @@
 import { CheckIcon, ChevronDoubleDownIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { ShieldCheckIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
+import { useContext } from 'react'
+import { Currency_Data } from '../../../context/CurrencyContext'
 import { HygraphImageLoader } from '../../../helper/hygraphImageLoader'
 import { Product } from '../../../types/Product'
 import Breadcrumbs from '../common/Breadcrumbs'
@@ -14,6 +16,8 @@ function classNames(...classes :string[]) {
   }
 
 export default function ProductOverview({ product } : ProductOverviewProps ) {
+
+    const {currency} = useContext(Currency_Data);
 
     const breadcrumbs = [
         { name: 'Home', href: '/'},
@@ -34,7 +38,7 @@ export default function ProductOverview({ product } : ProductOverviewProps ) {
           <section aria-labelledby="information-heading" className="mt-4">
 
             <div className="flex items-center">
-              <p className="text-lg text-gray-900 sm:text-xl">{product.price}$</p>
+              <p className="text-lg text-gray-900 sm:text-xl">{(product.price * currency.rate).toFixed()} {currency.symbol}</p>
             </div>
 
             <div className="mt-4 space-y-6">
