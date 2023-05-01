@@ -27,7 +27,7 @@ export default function SimpleProductCard({item} : SimpleProductCardProps) {
             className="object-cover object-center"
           />
     </div>
-    <a href={item.slug} className="block mt-4 font-medium text-gray-900">
+    <a href={`/products/${item.slug}`} className="block mt-4 font-medium text-gray-900">
       <span className="absolute inset-0 z-10" aria-hidden="true" />
       {item.name}
     </a>

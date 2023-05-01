@@ -1,4 +1,5 @@
 import ProductsList from '@/components/categories/ProductsList';
+import Breadcrumbs from '@/components/common/Breadcrumbs';
 import { gql } from '@apollo/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
@@ -11,6 +12,12 @@ type CategoryPageProps = {
 }
 
 export default function CategoryPage({ category } : CategoryPageProps) {
+
+    const breadcrumbs = [
+        { name: 'Home', href: '/'},
+        { name: category.name, href: `/categories/${category.slug}`},
+    ]
+
 
 
   return (
@@ -28,6 +35,9 @@ export default function CategoryPage({ category } : CategoryPageProps) {
         <div className="px-4 py-16 text-center sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">{category.name}</h1>
           <div className="max-w-xl mx-auto mt-4 text-base text-gray-500" dangerouslySetInnerHTML={{ __html: category.description.html }}/>
+        </div>
+        <div className="px-4 pb-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <Breadcrumbs breadcrumbsArray={breadcrumbs} />
         </div>
         <ProductsList products={category.products}/>
         </main>
@@ -77,6 +87,7 @@ export const getStaticPaths : GetStaticPaths = async () => {
                 categories(where: {slug: $slug}) {
                     id
                     name
+                    slug
                     categoryThumbnail {
                     url
                     }
