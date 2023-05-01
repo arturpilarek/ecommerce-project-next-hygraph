@@ -1,8 +1,8 @@
 import {
-    Bars3Icon,
-    MagnifyingGlassIcon,
-    QuestionMarkCircleIcon,
-    ShoppingBagIcon
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  QuestionMarkCircleIcon,
+  ShoppingBagIcon
 } from '@heroicons/react/24/outline'
 import FlytoutMenus from './FlytoutMenus'
 
@@ -65,20 +65,7 @@ export default function BottomNavigation(props : BottomNavigationProps) {
           </a>
 
           <div className="flex items-center justify-end flex-1">
-            <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
-              Search
-            </a>
-
             <div className="flex items-center lg:ml-8">
-              {/* Help */}
-              <a href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
-                <span className="sr-only">Help</span>
-                <QuestionMarkCircleIcon className="w-6 h-6" aria-hidden="true" />
-              </a>
-              <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
-                Help
-              </a>
-
               {/* Cart */}
               <div className="flow-root ml-4 lg:ml-8">
                 <a href="#" className="flex items-center p-2 -m-2 group">

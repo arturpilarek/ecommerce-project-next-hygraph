@@ -1,11 +1,14 @@
 
 import { request } from 'graphql-request'
 import { useEffect, useState } from 'react'
+import { Category } from '../../../types/Category'
+import { Currency } from '../../../types/Currency'
+
 import BottomNavigation from './BottomNavigation'
 import MobileNavigation from './MobileNavigation'
 import TopNavigation from './TopNavigation'
 
-const GET_CATEGORIES = ` 
+const GET_CATEGORIES_AND_CURRENCIES = ` 
 {
   categories {
     id
@@ -25,40 +28,37 @@ const GET_CATEGORIES = `
       }
     }
   }
+  currencies {
+    code
+    rate
+    default
+  }
 }
       `
-      
-const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 
-
-type category = {
-  id: string
-  name: string
-  categoryThumbnail: {
-    url: string
-  }
-  slug: string
-}
-
-type categories = {
-  categories: category[]
+type graphData = {
+  categories: Category[]
+  currencies: Currency[]
 }
 
 export default function TheNavigation() {
+  
   const [open, setOpen] = useState(false)
-  const [categories, setCategories] = useState<category[] | null>(null)
+  const [categories, setCategories] = useState<Category[] | null>(null)
+  const [currencies, setCurrencies] = useState<string[]>([""])
 
     useEffect(() => {
-      const fetchCategories = async () => {
-        const categoriesData: categories = await request(
+      const fetchGraphData = async () => {
+        const graphData: graphData = await request(
           `${process.env.hygraph_url}`,
-          GET_CATEGORIES
+          GET_CATEGORIES_AND_CURRENCIES
         )
-        setCategories(categoriesData.categories)
+        setCategories(graphData.categories)
+        setCurrencies(graphData.currencies.map((currency) => currency.code))
       }
-      fetchCategories()
-      
+      fetchGraphData()
     }, [])
+  
 
 
   const setNavigationOpen = (data : boolean) => {

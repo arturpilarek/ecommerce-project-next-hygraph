@@ -1,5 +1,7 @@
 import { CheckIcon, ChevronDoubleDownIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { ShieldCheckIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
+import { HygraphImageLoader } from '../../../helper/hygraphImageLoader'
 import { Product } from '../../../types/Product'
 import Breadcrumbs from '../common/Breadcrumbs'
 
@@ -65,7 +67,7 @@ export default function ProductOverview({ product } : ProductOverviewProps ) {
         {/* Product image */}
         <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
           <div className="overflow-hidden rounded-lg aspect-h-1 aspect-w-1">
-            <img src={product.images[0].url} alt={product.name} className="object-cover object-center w-full h-full" />
+            <Image loader={HygraphImageLoader} src={product.images[0].url} alt={product.name} width={600} height={600} className="object-cover object-center w-full h-full" />
           </div>
         </div>
 
