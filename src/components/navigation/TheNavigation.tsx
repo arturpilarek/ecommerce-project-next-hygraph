@@ -68,7 +68,7 @@ export default function TheNavigation() {
 
   return (
     <div className="bg-white">
-        <MobileNavigation categories={categories} currencies={currencies} openState={open} changeOpenState={setNavigationOpen} />
+        <MobileNavigation categories={categories} openState={open} changeOpenState={setNavigationOpen} />
       <header className="relative">
         <nav aria-label="Top">
         <TopNavigation currencies={currencies} />

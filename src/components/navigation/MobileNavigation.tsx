@@ -4,7 +4,6 @@ import { Fragment } from 'react'
 
 type MobileNavigationProps = {
     categories: any,
-    currencies: any,
     openState: boolean,
     changeOpenState: any
 }

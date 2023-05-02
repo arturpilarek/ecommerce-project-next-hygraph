@@ -38,7 +38,10 @@ export default function ProductOverview({ product } : ProductOverviewProps ) {
           <section aria-labelledby="information-heading" className="mt-4">
 
             <div className="flex items-center">
-              <p className="text-lg text-gray-900 sm:text-xl">{(product.price * currency.rate).toFixed()} {currency.symbol}</p>
+              { product.name === "Bonsai Lego Tree"
+              ? <p className='text-lg text-gray-900 sm:text-xl'>Priceless</p> 
+              : <p className="text-lg text-gray-900 sm:text-xl">{(product.price * currency.rate).toFixed()} {currency.symbol}</p>
+            }
             </div>
 
             <div className="mt-4 space-y-6">
@@ -78,10 +81,6 @@ export default function ProductOverview({ product } : ProductOverviewProps ) {
         {/* Product form */}
         <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
           <section aria-labelledby="options-heading">
-            <h2 id="options-heading" className="sr-only">
-              Product options
-            </h2>
-
             <form>
               <div className="mt-10">
                 <button
