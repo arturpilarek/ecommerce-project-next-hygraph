@@ -55,7 +55,7 @@ export default function ProductOverview({ product } : ProductOverviewProps ) {
                     ) : product.stock > 0 ? (
                         <>
                         <ChevronDoubleDownIcon className="flex-shrink-0 w-5 h-5 text-yellow-500" aria-hidden="true" />
-                        <p className="ml-2 text-sm text-gray-500">A few in stock</p>
+                        <p className="ml-2 text-sm text-gray-500">Only {product.stock} in stock</p>
                         </>
                     ) : (
                         <>

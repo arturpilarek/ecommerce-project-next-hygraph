@@ -1,7 +1,6 @@
 import { Dialog, Tab, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 
 type MobileNavigationProps = {
     categories: any,
@@ -99,16 +98,6 @@ export default function MobileNavigation(props : MobileNavigationProps) {
                   </Tab.Panels>
                 </Tab.Group>
 
-                {/* <div className="px-4 py-6 space-y-6 border-t border-gray-200"> */}
-                  {/* {props.navigation.pages.map((page : any) => (
-                    <div key={page.name} className="flow-root">
-                      <a href={page.href} className="block p-2 -m-2 font-medium text-gray-900">
-                        {page.name}
-                      </a>
-                    </div>
-                  ))} */}
-                {/* </div> */}
-
                 <div className="px-4 py-6 space-y-6 border-t border-gray-200">
                   <div className="flow-root">
                     <a href="#" className="block p-2 -m-2 font-medium text-gray-900">
@@ -120,31 +109,6 @@ export default function MobileNavigation(props : MobileNavigationProps) {
                       Sign in
                     </a>
                   </div>
-                </div>
-
-                <div className="px-4 py-6 space-y-6 border-t border-gray-200">
-                  {/* Currency selector */}
-                  <form>
-                    <div className="inline-block">
-                      <label htmlFor="mobile-currency" className="sr-only">
-                        Currency
-                      </label>
-                      <div className="relative -ml-2 border-transparent rounded-md group focus-within:ring-2 focus-within:ring-white">
-                        <select
-                          id="mobile-currency"
-                          name="currency"
-                          className="flex items-center rounded-md border-transparent bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-gray-700 focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-gray-800"
-                        >
-                          {props.currencies.map((currency : any) => (
-                            <option key={currency}>{currency}</option>
-                          ))}
-                        </select>
-                        <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none">
-                          <ChevronDownIcon className="w-5 h-5 text-gray-500" aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-                  </form>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

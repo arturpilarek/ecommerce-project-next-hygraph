@@ -1,10 +1,13 @@
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
-  QuestionMarkCircleIcon,
   ShoppingBagIcon
 } from '@heroicons/react/24/outline'
 import FlytoutMenus from './FlytoutMenus'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import dogeLogo from '../../../public/doge-logo.jpg'
 
 type BottomNavigationProps = {
 categories: any,
@@ -25,14 +28,16 @@ export default function BottomNavigation(props : BottomNavigationProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo (lg+) */}
           <div className="hidden lg:flex lg:flex-1 lg:items-center">
-            <a href="#">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="w-auto h-8"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
+          <span className="sr-only">Meme-commerce logo</span>
+            <Link href="/" className='flex'>
+              <Image
+            src={dogeLogo}
+            width={40}
+            height={40}
+            alt="Meme store logo"
+            className="w-auto h-8"
+          />
+            </Link>
           </div>
             <FlytoutMenus categories={props.categories} />
 
@@ -55,14 +60,16 @@ export default function BottomNavigation(props : BottomNavigationProps) {
           </div>
 
           {/* Logo (lg-) */}
-          <a href="#" className="lg:hidden">
-            <span className="sr-only">Your Company</span>
-            <img
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-              className="w-auto h-8"
-            />
-          </a>
+          <Link href="/" className="lg:hidden">
+            <span className="sr-only">Meme-commerce logo</span>
+          <Image
+            src={dogeLogo}
+            width={40}
+            height={40}
+            alt="Meme-commerce logo"
+            className="w-auto h-8"
+          />
+          </Link>
 
           <div className="flex items-center justify-end flex-1">
             <div className="flex items-center lg:ml-8">
