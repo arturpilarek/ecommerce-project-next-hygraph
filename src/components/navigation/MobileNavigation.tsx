@@ -1,5 +1,6 @@
 import { Dialog, Tab, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 import { Fragment } from 'react'
 
 type MobileNavigationProps = {
@@ -83,10 +84,10 @@ export default function MobileNavigation(props : MobileNavigationProps) {
                               <div className="overflow-hidden bg-gray-100 rounded-md aspect-h-1 aspect-w-1 group-hover:opacity-75">
                                 <img src={category.categoryThumbnail.url} alt={category.name} className="object-cover object-center" />
                               </div>
-                              <a href={category.slug} className="block mt-6 text-sm font-medium text-gray-900">
+                              <Link href={`/categories/${category.slug}`} className="block mt-6 text-sm font-medium text-gray-900">
                                 <span className="absolute inset-0 z-10" aria-hidden="true" />
                                 {category.name}
-                              </a>
+                              </Link>
                               <p aria-hidden="true" className="mt-1 text-sm text-gray-500">
                                 Shop now
                               </p>
