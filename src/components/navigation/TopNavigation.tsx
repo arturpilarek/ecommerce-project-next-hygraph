@@ -1,3 +1,4 @@
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { Currency } from '../../../types/Currency'
 import CurrencySelector from '../common/CurrencySelector'
@@ -7,6 +8,7 @@ type TopNavigationProps = {
     }
 
 export default function TopNavigation({currencies} : TopNavigationProps) {
+  const { data: session, status } = useSession()
   
   return (
               <div className="bg-gray-900">
@@ -14,12 +16,24 @@ export default function TopNavigation({currencies} : TopNavigationProps) {
                 {/* Currency selector */}
                 <CurrencySelector currencies={currencies} />
                 <div className="flex items-center space-x-6">
-                  <Link href="/login" className="text-sm font-medium text-white hover:text-gray-100">
+                  { session?.user.firstName 
+                  ? 
+                  ( 
+                  <>
+                    <p className='text-sm font-medium text-white'>Hello {session.user.firstName}!</p>
+                    <button className='text-sm font-medium text-white' onClick={() => signOut()}>Log out</button> 
+                  </>
+                  )
+                  : (
+                    <>
+                    <Link href="/login" className="text-sm font-medium text-white hover:text-gray-100">
                     Sign in
                   </Link>
-                  <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
+                  <Link href="/signup" className="text-sm font-medium text-white hover:text-gray-100">
                     Create an account
-                  </a>
+                  </Link>
+                  </>
+                  ) }
                 </div>
               </div>
             </div>

@@ -1,0 +1,32 @@
+{
+    "type": "VerticalLayout",
+    "elements": [
+      {
+        "type": "HorizontalLayout",
+        "elements": [
+        {
+            "type": "Control",
+            "scope": "#/properties/firstName"
+            },
+        {
+            "type": "Control",
+            "scope": "#/properties/lastName"
+        },
+          {
+            "type": "Control",
+            "scope": "#/properties/email"
+          },
+          {
+            "type": "Control",
+            "scope": "#/properties/password",
+            "options": {
+              "inputType": "password",
+              "format": "password",
+              "reveal": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+    "firstName": {
+        "type": "string",
+        "minLength": 3,
+        "description": "Please enter your name"
+    },
+    "lastName": {
+        "type": "string",
+        "minLength": 3,
+        "description": "Please enter your last name"
+    },
+      "email": {
+        "description": "Your email address",
+        "type": "string",
+        "format": "email"
+    },
+      "password": {
+        "type": "string",
+        "title": "Password"
+      }
+    },
+    "required": ["username", "password"]
+  }
+   
