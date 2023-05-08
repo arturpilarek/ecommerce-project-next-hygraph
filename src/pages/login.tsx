@@ -5,9 +5,9 @@ import {
   vanillaRenderers
 } from "@jsonforms/vanilla-renderers";
 import { signIn } from 'next-auth/react';
-import { useContext, useState } from 'react';
-import loginschema from '../../schemas/login/loginschema.json';
-import loginuischema from '../../schemas/login/loginuischema.json';
+import { useState } from 'react';
+import loginschema from '../../schemas/login/loginSchema.json';
+import loginuischema from '../../schemas/login/loginuiSchema.json';
 import PasswordControl from '../../schemas/login/password/passwordControl';
 import passwordControlTester from '../../schemas/login/password/passwordControlTester';
 import styleContextValue from '../../schemas/styleContextValue';

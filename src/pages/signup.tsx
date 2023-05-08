@@ -5,8 +5,8 @@ import {
   vanillaRenderers
 } from "@jsonforms/vanilla-renderers";
 import { useState } from 'react';
-import signupschema from '../../schemas/signup/signupschema.json';
-import signupuischema from '../../schemas/signup/signupuischema.json';
+import signupschema from '../../schemas/signup/signupSchema.json';
+import signupuischema from '../../schemas/signup/signupuiSchema.json';
 import styleContextValue from '../../schemas/styleContextValue';
 
 type signupData = {
