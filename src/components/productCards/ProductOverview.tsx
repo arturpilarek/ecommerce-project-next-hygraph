@@ -6,14 +6,12 @@ import { Currency_Data } from '../../../context/CurrencyContext'
 import { HygraphImageLoader } from '../../../helper/hygraphImageLoader'
 import { Product } from '../../../types/Product'
 import Breadcrumbs from '../common/Breadcrumbs'
+import { classNames } from '../../../helper/classNames'
 
 type ProductOverviewProps = {
     product: Product
 }
 
-function classNames(...classes :string[]) {
-    return classes.filter(Boolean).join(' ')
-  }
 
 export default function ProductOverview({ product } : ProductOverviewProps ) {
 

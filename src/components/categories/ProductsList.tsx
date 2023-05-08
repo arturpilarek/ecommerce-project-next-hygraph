@@ -1,9 +1,6 @@
 import { Product } from '../../../types/Product'
 import ProductCard from '../productCards/ProductCard'
 
-function classNames(...classes : string[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 type ProductListProps = {
   products: Product[]

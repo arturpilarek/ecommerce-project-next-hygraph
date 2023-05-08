@@ -2,16 +2,13 @@ import { Dialog, Tab, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { Fragment } from 'react'
+import { classNames } from '../../../helper/classNames'
 
 type MobileNavigationProps = {
     categories: any,
     openState: boolean,
     changeOpenState: any
 }
-
-function classNames(...classes :string[]) {
-    return classes.filter(Boolean).join(' ')
-  }
 
 export default function MobileNavigation(props : MobileNavigationProps) {
 

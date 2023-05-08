@@ -3,11 +3,8 @@ import Link from 'next/link'
 import { Fragment } from 'react'
 import { Category } from '../../../types/Category'
 import SimpleNavigationCard from '../common/SimpleNavigationCard'
+import { classNames } from '../../../helper/classNames'
 
-
-function classNames(...classes :string[]) {
-    return classes.filter(Boolean).join(' ')
-  }
 
   type FlytoutMenusProps = {
     categories: Category[]

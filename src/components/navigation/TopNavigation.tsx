@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Currency } from '../../../types/Currency'
 import CurrencySelector from '../common/CurrencySelector'
 
@@ -13,9 +14,9 @@ export default function TopNavigation({currencies} : TopNavigationProps) {
                 {/* Currency selector */}
                 <CurrencySelector currencies={currencies} />
                 <div className="flex items-center space-x-6">
-                  <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
+                  <Link href="/login" className="text-sm font-medium text-white hover:text-gray-100">
                     Sign in
-                  </a>
+                  </Link>
                   <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
                     Create an account
                   </a>
