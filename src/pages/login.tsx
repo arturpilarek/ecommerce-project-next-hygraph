@@ -43,6 +43,7 @@ const LoginForm = () => {
           </h2>
         </div>
         </div>
+      {/* @ts-expect-error */}
       <JsonFormsStyleContext.Provider value={styleContextValue}>
         <JsonForms
           schema={loginschema}

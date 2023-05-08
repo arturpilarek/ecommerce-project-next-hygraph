@@ -6,21 +6,19 @@ import { connectToDatabase } from "../../../../lib/mongodb"
 export default NextAuth({
   secret: process.env.AUTH_SECRET,
   session: {
-    jwt: true,
+    strategy: "jwt",
   },
   providers: [
     CredentialsProvider({
-      type: 'credentials',
+      type: "credentials",
       credentials: {
-        email: { label: "Email", type: "text"},
-        password: { label: "Password", type: "password" }
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
         const client = await connectToDatabase()
 
-        const usersCollection = client
-          .db("users-db")
-          .collection("users")
+        const usersCollection = client.db("users-db").collection("users")
 
         const user = await usersCollection.findOne({
           email: credentials?.email,
@@ -32,7 +30,7 @@ export default NextAuth({
         }
 
         const isValid = await verifyPassword(
-          credentials!.password,
+          credentials.password,
           user.password
         )
 
@@ -46,10 +44,10 @@ export default NextAuth({
           _id: user._id,
           firstName: user.firstName,
           lastName: user.lastName,
-          email: user.email
-        };
-      }
-    })
+          email: user.email,
+        }
+      },
+    }),
   ],
   callbacks: {
     async jwt(token, user) {
@@ -61,9 +59,9 @@ export default NextAuth({
     async session({ session, token, user }) {
       session.user = {
         ...session.user,
-        ...token.token.user
+        ...token.token.user,
       }
       return session
-    }
-  }
+    },
+  },
 })
