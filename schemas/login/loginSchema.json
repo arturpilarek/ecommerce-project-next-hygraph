@@ -8,7 +8,9 @@
     },
       "password": {
         "type": "string",
-        "title": "Password"
+        "title": "Password",
+        "minLength": 8,
+        "maxLength": 20
       }
     },
     "required": ["username", "password"]

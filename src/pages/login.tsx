@@ -5,7 +5,7 @@ import {
   vanillaRenderers
 } from "@jsonforms/vanilla-renderers";
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import loginschema from '../../schemas/login/loginSchema.json';
 import loginuischema from '../../schemas/login/loginuiSchema.json';
 import PasswordControl from '../../schemas/login/password/passwordControl';
@@ -24,16 +24,27 @@ type LoginData = {
 
 const LoginForm = () => {
   const [data, setData] = useState<LoginData>()
+  const [statusMsg, setStatusMsg] = useState<string>('')
 
-  const handleSignIn = () => {
-    
-    const result = signIn('credentials', {
-      email: data?.email,
-      password: data?.password,
-      callbackUrl: "/"
-    })
+
+  const handleSignIn = async (e: MouseEvent) => {
+    e.preventDefault()
+
+    setStatusMsg('Loading...')
+    try {
+      const result = signIn('credentials', {
+        email: data?.email,
+        password: data?.password,
+        callbackUrl: "/"
+      })
+    }
+    catch (error: any) {
+      setStatusMsg(error.message)
+    }
+
+
   }
-
+  
   return (
     <div className="max-w-xl mx-auto overflow-hidden sm:px-6 lg:px-8 sm:mx-auto sm:w-full sm:max-w-sm" >
       <div className="flex flex-col justify-center flex-1 min-h-full px-6 py-8 lg:px-8">
@@ -55,6 +66,7 @@ const LoginForm = () => {
         />
       </JsonFormsStyleContext.Provider>
       <div className='mt-4'>
+              {statusMsg && <p className='my-3 text-sm leading-6 text-red-600'>{statusMsg}</p>}
               <button
                 onClick={handleSignIn}
                 type="submit"
